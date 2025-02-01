@@ -1,0 +1,8 @@
+{
+  "HDI_DB::SBOOK": {
+    "target": {
+      "object": "SBOOK",
+      "schema": "SFLIGHT"
+    }
+  }
+}
