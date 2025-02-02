@@ -1,0 +1,5 @@
+COLUMN TABLE T4_PRUEBA2(
+nombre VARCHAR(50),
+apellido VARCHAR(50),
+salario DECIMAL
+);
