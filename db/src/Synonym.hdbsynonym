@@ -1,0 +1,26 @@
+{
+  "HDI_DB::SCARR": {
+    "target": {
+      "object": "SCARR",
+      "schema": "SFLIGHT"
+    }
+  },
+  "HDI_DB::SCUSTOM": {
+    "target": {
+      "object": "SCUSTOM",
+      "schema": "SFLIGHT"
+    }
+  },
+  "HDI_DB::SAIRPORT":{
+    "target": {
+      "object": "SAIRPORT",
+      "schema":"SFLIGHT"
+    }
+  },
+  "HDI_DB::SPFLI":{
+    "target": { 
+      "object": "SPFLI",
+      "schema":"SFLIGHT"
+    }
+  }
+ } 
