@@ -1,0 +1,4 @@
+COLUMN TABLE MAIN1 (
+    Nombre VARCHAR(10),
+    Apellido VARCHAR(10)
+);
