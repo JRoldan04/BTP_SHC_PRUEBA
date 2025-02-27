@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_SFLIGHT1" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="CV_SFLIGHT1"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="HDI_DB::SCUSTOM">
+    <resourceUri>HDI_DB::SCUSTOM</resourceUri>
+  </DataSource>
+  <DataSource id="HDI_DB::SBOOK">
+    <resourceUri>HDI_DB::SBOOK</resourceUri>
+  </DataSource>
+  <DataSource id="HDI_DB::SCARR">
+    <resourceUri>HDI_DB::SCARR</resourceUri>
+  </DataSource>
+  <DataSource id="HDI_DB::SPFLI">
+    <resourceUri>HDI_DB::SPFLI</resourceUri>
+  </DataSource>
+  <DataSource id="HDI_DB::SAIRPORT">
+    <resourceUri>HDI_DB::SAIRPORT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_SCUSTOM">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="FORM"/>
+      <viewAttribute id="STREET"/>
+      <viewAttribute id="POSTBOX"/>
+      <viewAttribute id="POSTCODE"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="TELEPHONE"/>
+      <viewAttribute id="CUSTTYPE"/>
+      <viewAttribute id="DISCOUNT"/>
+      <viewAttribute id="LANGU"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="WEBUSER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HDI_DB::SCUSTOM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_SBOOK">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="CARRID"/>
+      <viewAttribute id="CONNID"/>
+      <viewAttribute id="FLDATE"/>
+      <viewAttribute id="BOOKID"/>
+      <viewAttribute id="CUSTOMID"/>
+      <viewAttribute id="CUSTTYPE"/>
+      <viewAttribute id="SMOKER"/>
+      <viewAttribute id="LUGGWEIGHT"/>
+      <viewAttribute id="WUNIT"/>
+      <viewAttribute id="INVOICE"/>
+      <viewAttribute id="CLASS"/>
+      <viewAttribute id="FORCURAM"/>
+      <viewAttribute id="FORCURKEY"/>
+      <viewAttribute id="LOCCURAM"/>
+      <viewAttribute id="LOCCURKEY"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="COUNTER"/>
+      <viewAttribute id="AGENCYNUM"/>
+      <viewAttribute id="CANCELLED"/>
+      <viewAttribute id="RESERVED"/>
+      <viewAttribute id="PASSNAME"/>
+      <viewAttribute id="PASSFORM"/>
+      <viewAttribute id="PASSBIRTH"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HDI_DB::SBOOK"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_SCARR">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="CARRID"/>
+      <viewAttribute id="CARRNAME"/>
+      <viewAttribute id="CURRCODE"/>
+      <viewAttribute id="URL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HDI_DB::SCARR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_SPFLI">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="CARRID"/>
+      <viewAttribute id="CONNID"/>
+      <viewAttribute id="COUNTRYFR"/>
+      <viewAttribute id="CITYFROM"/>
+      <viewAttribute id="AIRPFROM"/>
+      <viewAttribute id="COUNTRYTO"/>
+      <viewAttribute id="CITYTO"/>
+      <viewAttribute id="AIRPTO"/>
+      <viewAttribute id="FLTIME"/>
+      <viewAttribute id="DEPTIME"/>
+      <viewAttribute id="ARRTIME"/>
+      <viewAttribute id="DISTANCE"/>
+      <viewAttribute id="DISTID"/>
+      <viewAttribute id="FLTYPE"/>
+      <viewAttribute id="PERIOD"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HDI_DB::SPFLI"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="P_SAIRPORT">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="TIME_ZONE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HDI_DB::SAIRPORT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <input node="P_SBOOK"/>
+    <input node="P_SCUSTOM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <input node="P_SBOOK"/>
+    <input node="P_SCARR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <input node="P_SCARR"/>
+    <input node="P_SPFLI"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="rightOuter" ignoreMultipleOutputsForFilter="false">
+    <viewAttributes>
+      <viewAttribute hidden="true" id="JOIN$MANDT$MANDT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="P_SPFLI">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
+    </input>
+    <input node="P_SAIRPORT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
+    </input>
+    <joinAttribute name="JOIN$MANDT$MANDT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <input node="Join_3"/>
+    <input node="Join_4"/>
+    <input node="Join_2"/>
+    <input node="Join_1"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Union_1">
+  <attributes/>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="91.99999999999986" y="236.9999988079071"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="P_SCUSTOM" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1047.9999999999998" y="338.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_SBOOK" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="837.9999999999999" y="338.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_SCARR" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="391.9999999999998" y="338.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_SPFLI" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="631.9999999999999" y="338.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="P_SAIRPORT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="171.9999999999999" y="338.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="1048" y="108"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_SBOOK" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="161.16845703125"/>
+    </shape>
+    <shape modelObjectName="P_SCUSTOM" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="152.62841796875"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="792" y="108"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_SBOOK" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="161.16845703125"/>
+    </shape>
+    <shape modelObjectName="P_SCARR" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="149.55615234375"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="512" y="108"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_SCARR" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="149.55615234375"/>
+    </shape>
+    <shape modelObjectName="P_SPFLI" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="155.265625"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="312" y="123"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="P_SPFLI" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="155.265625"/>
+    </shape>
+    <shape modelObjectName="P_SAIRPORT" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="148.94921875"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="530" y="5"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
