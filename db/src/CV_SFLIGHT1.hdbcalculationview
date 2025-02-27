@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_SFLIGHT1" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_SFLIGHT1" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
 <descriptions defaultDescription="CV_SFLIGHT1"/>
 <localVariables/>
 <variableMappings/>
@@ -117,26 +117,94 @@
     <calculatedViewAttributes/>
     <input node="HDI_DB::SAIRPORT"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_1">
-    <viewAttributes/>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="CARRID"/>
+      <viewAttribute id="CONNID"/>
+      <viewAttribute id="FLDATE"/>
+      <viewAttribute id="BOOKID"/>
+      <viewAttribute id="CUSTOMID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute hidden="true" id="JOIN$MANDT$MANDT"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="P_SBOOK"/>
-    <input node="P_SCUSTOM"/>
+    <input node="P_SBOOK">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRID" source="CARRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONNID" source="CONNID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLDATE" source="FLDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOOKID" source="BOOKID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMID" source="CUSTOMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
+    </input>
+    <input node="P_SCUSTOM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL" source="EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
+    </input>
+    <joinAttribute name="JOIN$MANDT$MANDT"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_2">
-    <viewAttributes/>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="CARRID"/>
+      <viewAttribute id="CARRNAME"/>
+      <viewAttribute id="CURRCODE"/>
+      <viewAttribute id="PASSFORM"/>
+      <viewAttribute id="PASSNAME"/>
+      <viewAttribute hidden="true" id="JOIN$MANDT$MANDT"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="P_SBOOK"/>
-    <input node="P_SCARR"/>
+    <input node="P_SBOOK">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRID" source="CARRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PASSFORM" source="PASSFORM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PASSNAME" source="PASSNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
+    </input>
+    <input node="P_SCARR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRNAME" source="CARRNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRCODE" source="CURRCODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
+    </input>
+    <joinAttribute name="JOIN$MANDT$MANDT"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_3">
-    <viewAttributes/>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_N" joinType="rightOuter">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="CARRID"/>
+      <viewAttribute id="DEPTIME"/>
+      <viewAttribute id="FLTIME"/>
+      <viewAttribute id="DISTANCE"/>
+      <viewAttribute id="ARRTIME"/>
+      <viewAttribute id="PERIOD"/>
+      <viewAttribute hidden="true" id="JOIN$MANDT$MANDT"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="P_SCARR"/>
-    <input node="P_SPFLI"/>
+    <input node="P_SCARR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRID" source="CARRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
+    </input>
+    <input node="P_SPFLI">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEPTIME" source="DEPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLTIME" source="FLTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTANCE" source="DISTANCE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ARRTIME" source="ARRTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD" source="PERIOD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
+    </input>
+    <joinAttribute name="JOIN$MANDT$MANDT"/>
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="rightOuter" ignoreMultipleOutputsForFilter="false">
     <viewAttributes>
+      <viewAttribute id="TIME_ZONE"/>
       <viewAttribute hidden="true" id="JOIN$MANDT$MANDT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -144,109 +212,294 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
     </input>
     <input node="P_SAIRPORT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TIME_ZONE" source="TIME_ZONE"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MANDT$MANDT" source="MANDT"/>
     </input>
     <joinAttribute name="JOIN$MANDT$MANDT"/>
   </calculationView>
   <calculationView xsi:type="Calculation:UnionView" id="Union_1">
-    <viewAttributes/>
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="CARRID"/>
+      <viewAttribute id="CONNID"/>
+      <viewAttribute id="FLDATE"/>
+      <viewAttribute id="BOOKID"/>
+      <viewAttribute id="CUSTOMID"/>
+      <viewAttribute id="NAME"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="EMAIL"/>
+      <viewAttribute id="CARRNAME"/>
+      <viewAttribute id="CURRCODE"/>
+      <viewAttribute id="PASSFORM"/>
+      <viewAttribute id="PASSNAME"/>
+      <viewAttribute id="DEPTIME"/>
+      <viewAttribute id="FLTIME"/>
+      <viewAttribute id="DISTANCE"/>
+      <viewAttribute id="ARRTIME"/>
+      <viewAttribute id="PERIOD"/>
+      <viewAttribute id="TIME_ZONE"/>
+    </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="Join_3"/>
-    <input node="Join_4"/>
-    <input node="Join_2"/>
-    <input node="Join_1"/>
+    <input node="Join_1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRID" source="CARRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONNID" source="CONNID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLDATE" source="FLDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOOKID" source="BOOKID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMID" source="CUSTOMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL" source="EMAIL"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CARRNAME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CURRCODE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PASSFORM" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PASSNAME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DEPTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DISTANCE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ARRTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PERIOD" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TIME_ZONE" null="true"/>
+    </input>
+    <input node="Join_2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MANDT" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CARRID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CONNID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLDATE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BOOKID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CUSTOMID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NAME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="COUNTRY" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="EMAIL" null="true"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRNAME" source="CARRNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRCODE" source="CURRCODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PASSFORM" source="PASSFORM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PASSNAME" source="PASSNAME"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DEPTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DISTANCE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ARRTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PERIOD" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TIME_ZONE" null="true"/>
+    </input>
+    <input node="Join_3" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MANDT" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CARRID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CONNID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLDATE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BOOKID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CUSTOMID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NAME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="COUNTRY" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="EMAIL" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CARRNAME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CURRCODE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PASSFORM" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PASSNAME" null="true"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEPTIME" source="DEPTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLTIME" source="FLTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISTANCE" source="DISTANCE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ARRTIME" source="ARRTIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD" source="PERIOD"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TIME_ZONE" null="true"/>
+    </input>
+    <input node="Join_4" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MANDT" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CARRID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CONNID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLDATE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="BOOKID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CUSTOMID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NAME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="COUNTRY" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ID" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="EMAIL" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CARRNAME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CURRCODE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PASSFORM" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PASSNAME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DEPTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DISTANCE" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ARRTIME" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PERIOD" null="true"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TIME_ZONE" source="TIME_ZONE"/>
+    </input>
   </calculationView>
 </calculationViews>
 
 <logicalModel id="Union_1">
-  <attributes/>
+  <attributes>
+    <attribute id="MANDT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MANDT"/>
+      <keyMapping columnObjectName="Union_1" columnName="MANDT"/>
+    </attribute>
+    <attribute id="CARRID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CARRID"/>
+      <keyMapping columnObjectName="Union_1" columnName="CARRID"/>
+    </attribute>
+    <attribute id="CONNID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONNID"/>
+      <keyMapping columnObjectName="Union_1" columnName="CONNID"/>
+    </attribute>
+    <attribute id="FLDATE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FLDATE"/>
+      <keyMapping columnObjectName="Union_1" columnName="FLDATE"/>
+    </attribute>
+    <attribute id="BOOKID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BOOKID"/>
+      <keyMapping columnObjectName="Union_1" columnName="BOOKID"/>
+    </attribute>
+    <attribute id="CUSTOMID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTOMID"/>
+      <keyMapping columnObjectName="Union_1" columnName="CUSTOMID"/>
+    </attribute>
+    <attribute id="NAME" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME"/>
+      <keyMapping columnObjectName="Union_1" columnName="NAME"/>
+    </attribute>
+    <attribute id="COUNTRY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Union_1" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="ID" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Union_1" columnName="ID"/>
+    </attribute>
+    <attribute id="EMAIL" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAIL"/>
+      <keyMapping columnObjectName="Union_1" columnName="EMAIL"/>
+    </attribute>
+    <attribute id="CARRNAME" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CARRNAME"/>
+      <keyMapping columnObjectName="Union_1" columnName="CARRNAME"/>
+    </attribute>
+    <attribute id="CURRCODE" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRCODE"/>
+      <keyMapping columnObjectName="Union_1" columnName="CURRCODE"/>
+    </attribute>
+    <attribute id="PASSFORM" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PASSFORM"/>
+      <keyMapping columnObjectName="Union_1" columnName="PASSFORM"/>
+    </attribute>
+    <attribute id="PASSNAME" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PASSNAME"/>
+      <keyMapping columnObjectName="Union_1" columnName="PASSNAME"/>
+    </attribute>
+    <attribute id="DEPTIME" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEPTIME"/>
+      <keyMapping columnObjectName="Union_1" columnName="DEPTIME"/>
+    </attribute>
+    <attribute id="FLTIME" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FLTIME"/>
+      <keyMapping columnObjectName="Union_1" columnName="FLTIME"/>
+    </attribute>
+    <attribute id="DISTANCE" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DISTANCE"/>
+      <keyMapping columnObjectName="Union_1"/>
+    </attribute>
+    <attribute id="ARRTIME" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ARRTIME"/>
+      <keyMapping columnObjectName="Union_1"/>
+    </attribute>
+    <attribute id="PERIOD" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PERIOD"/>
+      <keyMapping columnObjectName="Union_1"/>
+    </attribute>
+    <attribute id="TIME_ZONE" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TIME_ZONE"/>
+      <keyMapping columnObjectName="Union_1" columnName="TIME_ZONE"/>
+    </attribute>
+  </attributes>
   <calculatedAttributes/>
   <baseMeasures/>
   <calculatedMeasures/>
-  <restrictedMeasures/>
-  <localDimensions/>
-</logicalModel>
+  <restrictedMeasures/></logicalModel>
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="91.99999999999986" y="236.9999988079071"/>
+      <upperLeftCorner x="342" y="112"/>
     
       <rectangleSize width="160"/>
     </shape>
     
   
     <shape expanded="true" modelObjectName="P_SCUSTOM" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="1047.9999999999998" y="338.9999988079071"/>
+      <upperLeftCorner x="92" y="501"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="P_SBOOK" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="837.9999999999999" y="338.9999988079071"/>
+      <upperLeftCorner x="302" y="501"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="P_SCARR" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="391.9999999999998" y="338.9999988079071"/>
+      <upperLeftCorner x="512" y="501"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="P_SPFLI" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="631.9999999999999" y="338.9999988079071"/>
+      <upperLeftCorner x="722" y="501"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="P_SAIRPORT" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="171.9999999999999" y="338.9999988079071"/>
+      <upperLeftCorner x="932" y="501"/>
       <rectangleSize height="30" width="160"/>
     </shape>
+  
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="1048" y="108"/>
+      <upperLeftCorner x="118" y="341"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="P_SBOOK" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="161.16845703125"/>
+      <rectangleSize width="161"/>
     </shape>
     <shape modelObjectName="P_SCUSTOM" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="152.62841796875"/>
+      <rectangleSize width="152"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="792" y="108"/>
+      <upperLeftCorner x="412" y="341"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="P_SBOOK" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="161.16845703125"/>
+      <rectangleSize width="161"/>
     </shape>
     <shape modelObjectName="P_SCARR" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="149.55615234375"/>
+      <rectangleSize width="149"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="512" y="108"/>
+      <upperLeftCorner x="622" y="341"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="P_SCARR" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="149.55615234375"/>
+      <rectangleSize width="149"/>
     </shape>
     <shape modelObjectName="P_SPFLI" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="155.265625"/>
+      <rectangleSize width="155"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="312" y="123"/>
+      <upperLeftCorner x="835" y="341"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="P_SPFLI" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="155.265625"/>
+      <rectangleSize width="155"/>
     </shape>
     <shape modelObjectName="P_SAIRPORT" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="148.94921875"/>
+      <rectangleSize width="148"/>
     </shape>
     <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="530" y="5"/>
+      <upperLeftCorner x="342" y="217"/>
       <rectangleSize height="30" width="160"/>
-    </shape>
-  </shapes>
+    </shape></shapes>
 </layout>
 </Calculation:scenario>
