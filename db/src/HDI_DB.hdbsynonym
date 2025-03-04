@@ -1,7 +1,157 @@
 {
-  "HDI_DB::SBOOK": {
+  "SFLIGHT::SBOOK": {
     "target": {
       "object": "SBOOK",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SAIRPORT": {
+    "target": {
+      "object": "SAIRPORT",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SAPLANE": {
+    "target": {
+      "object": "SAPLANE",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SBUSPART": {
+    "target": {
+      "object": "SBUSPART",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SCARPLAN": {
+    "target": {
+      "object": "SCARPLAN",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SCARR": {
+    "target": {
+      "object": "SCARR",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SCITAIRP": {
+    "target": {
+      "object": "SCITAIRP",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SCOUNTER": {
+    "target": {
+      "object": "SCOUNTER",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SCPLANE": {
+    "target": {
+      "object": "SCPLANE",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SCURR": {
+    "target": {
+      "object": "SCURR",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SCURX": {
+    "target": {
+      "object": "SCURX",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SCUSTOM": {
+    "target": {
+      "object": "SCUSTOM",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SDESSERT": {
+    "target": {
+      "object": "SDESSERT",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SFLIGHT": {
+    "target": {
+      "object": "SFLIGHT",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SFLIMEAL": {
+    "target": {
+      "object": "SFLIMEAL",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SGEOCITY": {
+    "target": {
+      "object": "SGEOCITY",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SMACOURSE": {
+    "target": {
+      "object": "SMACOURSE",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SMEAL": {
+    "target": {
+      "object": "SMEAL",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SMEALT": {
+    "target": {
+      "object": "SMEALT",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SMENU": {
+    "target": {
+      "object": "SMENU",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SFLIGHT::SNVOICE": {
+    "target": {
+      "object": "SNVOICE",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SPFLIGHT::SPFLI": {
+    "target": {
+      "object": "SPFLI",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SPFLIGHT::SPPLANE": {
+    "target": {
+      "object": "SPPLANE",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SPFLIGHT::SSTARTER": {
+    "target": {
+      "object": "SSTARTER",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SPFLIGHT::STICKET": {
+    "target": {
+      "object": "STICKET",
+      "schema": "SFLIGHT"
+    }
+  },
+  "SPFLIGHT::STRAVELAG": {
+    "target": {
+      "object": "STRAVELAG",
       "schema": "SFLIGHT"
     }
   }

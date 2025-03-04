@@ -1,0 +1,13 @@
+FUNCTION "TF_T_EMPLOYEE"( )
+    RETURNS TABLE (ID_EMPLEADO INT)
+    LANGUAGE SQLSCRIPT
+    --SQL SECURITY INVOKER 
+    AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+    RETURN
+    SELECT ID_EMPLEADO
+    FROM "T_EMPLOYEE";
+END;

@@ -1,5 +1,0 @@
-COLUMN TABLE T3_PRUEBA2(
-nombre VARCHAR(50),
-apellido VARCHAR(50),
-salario DECIMAL
-);
