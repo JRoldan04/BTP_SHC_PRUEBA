@@ -1,0 +1,8 @@
+COLUMN TABLE "T_EXCEL" (
+  ID        INT,
+  DESCRIPCION   VARCHAR(10),
+  NUMERACION    INTEGER,
+  PESO          INTEGER,
+  VALOR         DECIMAL(10,1),    
+  PRIMARY KEY ("ID")
+  );

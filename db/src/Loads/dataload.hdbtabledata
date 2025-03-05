@@ -1,0 +1,33 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "T_EXCEL",
+	    "source_data": {
+		    "data_type": "CSV",
+		    "file_name": "T_EXCEL.csv",
+		    "has_header": true,
+		    "dialect": "HANA",
+		    "type_config": {
+			    "delimiter": ";"
+              }
+	       }
+	    },
+        {
+         "target_table":"T_LIBDI2024",
+         "source_data": {
+            "data_type":"CSV",
+            "file_name": "T_LIBDI2024.csv",
+            "has_header": true,
+            "dialect":"HANA",
+            "type_config": {
+            "delimiter": ";"           
+               }
+            }
+        }
+    ]
+}
+
+
+
+ 
