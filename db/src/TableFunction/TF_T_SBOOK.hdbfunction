@@ -1,0 +1,19 @@
+FUNCTION "TF_T_SBOOK"( )
+    RETURNS TABLE(MANDT VARCHAR(5),CARRID VARCHAR(10),CONNID INTEGER, CUSTOMID INTEGER, ORDER_DATE DATE,PASSNAME VARCHAR(100))
+    LANGUAGE SQLSCRIPT
+    --SQL SECURITY INVOKER 
+AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+    RETURN
+    SELECT
+    sb.MANDT,
+    sc.CARRID,
+    sf.CONNID,
+    sb.CUSTOMID,
+    sb.ORDER_DATE,
+    sb.PASSNAME 
+FROM     
+END;
